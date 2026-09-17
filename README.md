@@ -1,61 +1,63 @@
 # DevoDash
 
-Appka pro děti na denní **ztišení** – verš z Bible, krátké vysvětlení pro
-rodiče a jednoduchá interaktivní hra k danému verši. Běží jako webová PWA,
-takže jde spustit rovnou v Safari na iPadu a přidat na plochu jako ikonu.
+An app for kids' daily Bible **"quiet time"** – a verse, a short explanation
+for parents, and a simple interactive game tied to that verse. It runs as a
+web PWA, so it opens straight in Safari on an iPad and can be added to the
+home screen as an icon.
 
-Víc kontextu a vize projektu je v [`CLAUDE.md`](./CLAUDE.md).
+More context and the project vision live in [`CLAUDE.md`](./CLAUDE.md).
 
-## Aktuální demo
+## Current demo
 
-- **Přísloví 20:4** – "Lenoch na podzim neorá, potom se při žni dožaduje,
-  ale nic není."
-- Nahoře popisek verše pro rodiče, dole hra: dítě prstem vede postavičku
-  přes pole a oře ho. Po dokončení (nebo po volbě "jít radši lehnout")
-  appka ukáže, jak to dopadlo o žních.
+- **Proverbs 20:4** – "A sluggard does not plow in season; so at harvest
+  time he looks but finds nothing."
+- A parent-facing explanation of the verse at the top, and a game below:
+  the child drags a character across a field with their finger to plow it.
+  After finishing (or choosing "go lie down instead"), the app shows how
+  things turned out at harvest time.
 
-## Jak appku spustit
+## Running the app
 
-Potřebuješ [Node.js](https://nodejs.org/) (18+).
+You need [Node.js](https://nodejs.org/) (18+).
 
 ```bash
 npm install
 npm run dev
 ```
 
-Otevře se na `http://localhost:5173`. Pro přístup z jiného zařízení v síti
-(např. iPad) spusť:
+Opens at `http://localhost:5173`. To access it from another device on the
+network (e.g. an iPad), run:
 
 ```bash
 npm run dev -- --host
 ```
 
-a na iPadu otevři v Safari `http://<IP-adresa-počítače>:5173` (počítač i
-iPad musí být na stejné Wi-Fi síti). V Safari pak přes tlačítko sdílení
-appku můžeš přidat na plochu ("Přidat na plochu") jako ikonu.
+and on the iPad open `http://<your-computer's-IP>:5173` in Safari (the
+computer and iPad must be on the same Wi-Fi network). From Safari's share
+menu you can then add the app to the home screen ("Add to Home Screen").
 
-Produkční build:
+Production build:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Jak přidat další verš/hru
+## Adding another verse/game
 
-Verše jsou datově vedené v [`src/data/verses.ts`](./src/data/verses.ts) –
-stačí přidat další záznam typu `Verse` (kniha, kapitola, verš, text,
-poznámka pro rodiče, klíč hry). Levé menu i výběr hry se podle tohoto pole
-poskládají automaticky.
+Verses are data-driven, in [`src/data/verses.ts`](./src/data/verses.ts) –
+just add another `Verse` entry (book, chapter, verse, text, parent note,
+game key). The left-hand menu and game selection are built from this array
+automatically.
 
-Hry jsou v [`src/games`](./src/games) a registrují se v
-[`src/games/registry.tsx`](./src/games/registry.tsx) pod klíčem, který se
-pak použije v `verse.game`. Nová hra = nová komponenta + jeden řádek v
-registru.
+Games live in [`src/games`](./src/games) and register themselves in
+[`src/games/registry.tsx`](./src/games/registry.tsx) under a key that's
+then used as `verse.game`. A new game = one new component + one line in
+the registry.
 
 ## Tech stack
 
 - React + TypeScript
 - Vite
 - Tailwind CSS v4
-- vite-plugin-pwa (offline provoz, instalace na plochu)
+- vite-plugin-pwa (offline support, installable on the home screen)
