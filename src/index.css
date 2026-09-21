@@ -15,3 +15,35 @@ body {
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
 }
+
+@keyframes plow-pop {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-plow-pop {
+  animation: plow-pop 0.4s ease-out;
+}
+
+@keyframes float-zzz {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+.animate-float-zzz {
+  animation: float-zzz 1.6s ease-in-out infinite;
+}
