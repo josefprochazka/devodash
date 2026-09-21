@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local project notes (contains personal info, kept out of git)
+CLAUDE.md
