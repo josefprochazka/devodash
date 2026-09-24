@@ -48,19 +48,213 @@ body {
   animation: float-zzz 1.6s ease-in-out infinite;
 }
 
-/* --- Most k Bohu (1. Petrův 3:18, src/games/MostGame.tsx) --- */
+/* --- Žebřík k Bohu (1. Petrův 3:18, src/games/MostGame.tsx + src/games/most/) --- */
 
-@keyframes wobble-shake {
+/* okolní nebe: záře, hvězdy, mraky */
+
+@keyframes most-glow-pulse {
   0%,
   100% {
-    transform: translateX(0);
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+.most-glow {
+  animation: most-glow-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes most-star-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+.most-star {
+  animation: most-star-twinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes most-cloud-drift {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(340%);
+  }
+}
+.most-cloud {
+  animation: most-cloud-drift 22s linear infinite;
+}
+
+/* žebřík se zakymácí, když dítě zjistí, že nedosáhne nahoru */
+
+@keyframes most-ladder-wobble {
+  0%,
+  100% {
+    transform: rotate(0deg);
   }
   25% {
-    transform: translateX(-3px);
+    transform: rotate(-2.5deg);
   }
   75% {
-    transform: translateX(3px);
+    transform: rotate(2.5deg);
   }
+}
+.most-ladder--wobbling {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: most-ladder-wobble 0.5s ease-in-out 2;
+}
+
+/* postavička dítěte (src/games/most/Climber.tsx) */
+
+@keyframes climber-arm-left-swing {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+@keyframes climber-arm-right-swing {
+  0%,
+  100% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-14deg);
+  }
+}
+.climber--climbing .climber-arm-left {
+  transform-box: view-box;
+  transform-origin: 11px 21px;
+  animation: climber-arm-left-swing 0.45s ease-in-out infinite;
+}
+.climber--climbing .climber-arm-right {
+  transform-box: view-box;
+  transform-origin: 25px 21px;
+  animation: climber-arm-right-swing 0.45s ease-in-out infinite;
+}
+
+@keyframes climber-leg-left-step {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes climber-leg-right-step {
+  0%,
+  100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+.climber--climbing .climber-leg-left {
+  animation: climber-leg-left-step 0.45s ease-in-out infinite;
+}
+.climber--climbing .climber-leg-right {
+  animation: climber-leg-right-step 0.45s ease-in-out infinite;
+}
+
+/* let s Ježíšem – jemné pohupování celé postavičky */
+
+@keyframes climber-soar {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(3deg);
+  }
+}
+.climber--fly {
+  animation: climber-soar 1s ease-in-out infinite;
+}
+
+/* Ježíš (src/games/most/Jesus.tsx) */
+
+@keyframes jesus-halo-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+.jesus-halo {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: jesus-halo-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes jesus-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.jesus {
+  animation: jesus-float 2.6s ease-in-out infinite;
+}
+.jesus--flying {
+  animation: jesus-float 0.9s ease-in-out infinite;
+}
+
+/* třpytky za letící dvojicí */
+
+@keyframes most-sparkle-trail {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) translateY(-6px);
+  }
+}
+.most-sparkle {
+  animation: most-sparkle-trail 0.9s ease-in-out infinite;
+}
+
+/* závěrečný záblesk světla */
+
+@keyframes most-flash-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  60% {
+    opacity: 0.9;
+    transform: scale(1.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+.most-flash {
+  animation: most-flash-burst 1s ease-out forwards;
 }
 
 /* --- Matematické objevování: animace postaviček (src/components/math/) ---
