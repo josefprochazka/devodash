@@ -1,16 +1,29 @@
 import { useState } from "react";
 import { verses } from "./data/verses";
-import { VerseMenu } from "./components/VerseMenu";
+import { VerseMenu, COMING_SOON_ID } from "./components/VerseMenu";
 import { VerseView } from "./components/VerseView";
 
 function App() {
   const [selectedId, setSelectedId] = useState(verses[0].id);
-  const verse = verses.find((v) => v.id === selectedId) ?? verses[0];
+  const verse = verses.find((v) => v.id === selectedId);
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-stone-50">
       <VerseMenu selectedId={selectedId} onSelect={setSelectedId} />
-      <VerseView verse={verse} />
+      {verse ? (
+        <VerseView verse={verse} />
+      ) : (
+        <main className="flex-1 flex items-center justify-center p-8 text-center">
+          <div>
+            <div className="text-5xl mb-4">🚧</div>
+            <p className="text-lg text-stone-600">
+              {selectedId === COMING_SOON_ID
+                ? "Další verš se připravuje."
+                : "Verš nenalezen."}
+            </p>
+          </div>
+        </main>
+      )}
     </div>
   );
 }

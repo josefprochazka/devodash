@@ -1,6 +1,9 @@
 import { verses } from "../data/verses";
 import type { Verse } from "../types";
 
+/** Zástupný id pro budoucí verš, který ještě nemá reálná data. */
+export const COMING_SOON_ID = "coming-soon";
+
 interface Props {
   selectedId: string;
   onSelect: (id: string) => void;
@@ -52,6 +55,20 @@ export function VerseMenu({ selectedId, onSelect }: Props) {
           ))}
         </div>
       ))}
+
+      <div className="mb-3">
+        <button
+          type="button"
+          onClick={() => onSelect(COMING_SOON_ID)}
+          className={`w-full text-left px-3 py-2 rounded-lg border border-dashed transition-colors cursor-pointer ${
+            selectedId === COMING_SOON_ID
+              ? "bg-amber-400 text-emerald-950 font-semibold border-amber-400"
+              : "border-emerald-700 text-emerald-300/80 hover:bg-emerald-800"
+          }`}
+        >
+          + další verš
+        </button>
+      </div>
     </nav>
   );
 }
