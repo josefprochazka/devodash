@@ -16,4 +16,15 @@ export const verses: Verse[] = [
       "Verš mluví o následcích odkládání práce. Kdo na podzim (v čas přípravy) neoře pole, nemůže o žních čekat úrodu – marně by ji hledal. Dětem to ukazuje, že věci, které je potřeba udělat včas, se nedají „dohnat“ ve chvíli, kdy už je pozdě.",
     game: "orani",
   },
+  {
+    id: "1-petruv-3-18",
+    book: "1. Petrův",
+    chapter: 3,
+    verse: 18,
+    reference: "1. Petrův 3:18",
+    text: "Vždyť i Kristus jednou provždy trpěl za hříchy, spravedlivý za nespravedlivé, aby vás přivedl k Bohu. V těle byl sice usmrcen, ale v Duchu obživen.",
+    parentNote:
+      "Verš vysvětluje podstatu evangelia. Ukazuje, že k Bohu se nedostaneme vlastními zásluhami ani dobrými skutky, ale jedině skrze Ježíšovu oběť na kříži, která překlenuje propast hříchu.",
+    game: "most",
+  },
 ];

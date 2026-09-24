@@ -1,4 +1,4 @@
-export type GameKey = "orani";
+export type GameKey = "orani" | "most";
 
 export interface Verse {
   id: string;

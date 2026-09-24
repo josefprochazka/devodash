@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import type { GameKey } from "../types";
 import { OraniGame } from "./OraniGame";
+import { MostGame } from "./MostGame";
 
 /**
  * Registr her podle klíče z Verse.game. Nová hra = nová komponenta + nový
@@ -8,4 +9,5 @@ import { OraniGame } from "./OraniGame";
  */
 export const gameRegistry: Record<GameKey, ComponentType> = {
   orani: OraniGame,
+  most: MostGame,
 };

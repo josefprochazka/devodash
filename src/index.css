@@ -48,6 +48,21 @@ body {
   animation: float-zzz 1.6s ease-in-out infinite;
 }
 
+/* --- Most k Bohu (1. Petrův 3:18, src/games/MostGame.tsx) --- */
+
+@keyframes wobble-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
 /* --- Matematické objevování: animace postaviček (src/components/math/) ---
    Sdílený stav (.creature--idle / .creature--active) se nastavuje na <svg>
    v Dwarf.tsx / Apple.tsx / Animal.tsx, vnitřní části mají vlastní
