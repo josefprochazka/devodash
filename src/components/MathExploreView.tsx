@@ -111,7 +111,7 @@ export function MathExploreView() {
 
           {value === 0 ? (
             <p className="text-5xl md:text-6xl font-black tracking-widest text-stone-300 pb-6">
-              NIKDO
+              NIC
             </p>
           ) : (
             <div className="relative flex flex-wrap items-end justify-center gap-1.5 pb-2">
