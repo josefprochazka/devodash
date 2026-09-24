@@ -47,3 +47,96 @@ body {
 .animate-float-zzz {
   animation: float-zzz 1.6s ease-in-out infinite;
 }
+
+/* --- Matematické objevování: animace trpaslíka (src/components/math/Dwarf.tsx) --- */
+
+@keyframes dwarf-idle-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.dwarf--idle .dwarf-body-group {
+  animation: dwarf-idle-bob 2.4s ease-in-out infinite;
+}
+
+@keyframes dwarf-body-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.dwarf--active .dwarf-body-group {
+  animation: dwarf-body-bounce 0.5s ease-in-out infinite;
+}
+
+@keyframes dwarf-pick-swing {
+  0% {
+    transform: rotate(-10deg);
+  }
+  40% {
+    transform: rotate(60deg);
+  }
+  60% {
+    transform: rotate(60deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+.dwarf--active .dwarf-arm-right {
+  transform-box: fill-box;
+  transform-origin: 60% 10%;
+  animation: dwarf-pick-swing 0.7s ease-in-out infinite;
+}
+
+@keyframes dwarf-leg-step-left {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes dwarf-leg-step-right {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+.dwarf--active .dwarf-leg-left {
+  transform-box: fill-box;
+  animation: dwarf-leg-step-left 0.5s ease-in-out infinite;
+}
+.dwarf--active .dwarf-leg-right {
+  transform-box: fill-box;
+  animation: dwarf-leg-step-right 0.5s ease-in-out infinite;
+}
+
+@keyframes dwarf-spark {
+  0%,
+  65%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.dwarf--active .dwarf-spark {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: dwarf-spark 0.7s ease-in-out infinite;
+}
