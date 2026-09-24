@@ -48,9 +48,12 @@ body {
   animation: float-zzz 1.6s ease-in-out infinite;
 }
 
-/* --- Matematické objevování: animace trpaslíka (src/components/math/Dwarf.tsx) --- */
+/* --- Matematické objevování: animace postaviček (src/components/math/) ---
+   Sdílený stav (.creature--idle / .creature--active) se nastavuje na <svg>
+   v Dwarf.tsx / Apple.tsx / Animal.tsx, vnitřní části mají vlastní
+   prefixované třídy (dwarf-*, apple-*, animal-*), takže se nepletou. */
 
-@keyframes dwarf-idle-bob {
+@keyframes creature-idle-bob {
   0%,
   100% {
     transform: translateY(0);
@@ -59,9 +62,12 @@ body {
     transform: translateY(-2px);
   }
 }
-.dwarf--idle .dwarf-body-group {
-  animation: dwarf-idle-bob 2.4s ease-in-out infinite;
+.creature--idle .dwarf-body-group,
+.creature--idle .animal-body-group {
+  animation: creature-idle-bob 2.4s ease-in-out infinite;
 }
+
+/* Trpaslík: kope poklad */
 
 @keyframes dwarf-body-bounce {
   0%,
@@ -72,7 +78,7 @@ body {
     transform: translateY(-2px);
   }
 }
-.dwarf--active .dwarf-body-group {
+.creature--active .dwarf-body-group {
   animation: dwarf-body-bounce 0.5s ease-in-out infinite;
 }
 
@@ -90,7 +96,7 @@ body {
     transform: rotate(-10deg);
   }
 }
-.dwarf--active .dwarf-arm-right {
+.creature--active .dwarf-arm-right {
   transform-box: fill-box;
   transform-origin: 60% 10%;
   animation: dwarf-pick-swing 0.7s ease-in-out infinite;
@@ -114,11 +120,11 @@ body {
     transform: translateY(0);
   }
 }
-.dwarf--active .dwarf-leg-left {
+.creature--active .dwarf-leg-left {
   transform-box: fill-box;
   animation: dwarf-leg-step-left 0.5s ease-in-out infinite;
 }
-.dwarf--active .dwarf-leg-right {
+.creature--active .dwarf-leg-right {
   transform-box: fill-box;
   animation: dwarf-leg-step-right 0.5s ease-in-out infinite;
 }
@@ -135,8 +141,90 @@ body {
     transform: scale(1);
   }
 }
-.dwarf--active .dwarf-spark {
+.creature--active .dwarf-spark {
   transform-box: fill-box;
   transform-origin: 50% 50%;
   animation: dwarf-spark 0.7s ease-in-out infinite;
+}
+
+/* Jablíčko: v klidu úplně statické, v pohybu se komíhá listem ve větru */
+
+@keyframes apple-leaf-wind {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(22deg);
+  }
+}
+.creature--active .apple-leaf {
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  animation: apple-leaf-wind 1.1s ease-in-out infinite;
+}
+
+@keyframes apple-sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+.creature--active .apple-body-group {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: apple-sway 1.1s ease-in-out infinite;
+}
+
+/* Zvířátko (králíček): v pohybu skáče a mává ušima */
+
+@keyframes animal-hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-9px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+  75% {
+    transform: translateY(0);
+  }
+}
+.creature--active .animal-body-group {
+  animation: animal-hop 0.6s ease-in-out infinite;
+}
+
+@keyframes animal-ear-flop-left {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-16deg);
+  }
+}
+@keyframes animal-ear-flop-right {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(16deg);
+  }
+}
+.creature--active .animal-ear-left {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: animal-ear-flop-left 0.6s ease-in-out infinite;
+}
+.creature--active .animal-ear-right {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: animal-ear-flop-right 0.6s ease-in-out infinite;
 }

@@ -29,7 +29,7 @@ export function Dwarf({ active, variant = 0, size = 48 }: Props) {
       viewBox={`0 -8 ${VIEW_W} ${VIEW_H}`}
       width={size}
       height={Math.round((size * VIEW_H) / VIEW_W)}
-      className={active ? "dwarf dwarf--active" : "dwarf dwarf--idle"}
+      className={active ? "creature--active" : "creature--idle"}
       aria-hidden="true"
     >
       <g className="dwarf-legs">
