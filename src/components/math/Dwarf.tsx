@@ -65,18 +65,19 @@ export function Dwarf({ active, variant = 0, size = 48 }: Props) {
         <polygon points="9,11 20,-6 31,11" fill={hat} />
         <circle cx="20" cy="-6" r="2.5" fill={hat} />
 
-        <g
-          className="dwarf-arm-right"
-          style={{ animationDelay: delay }}
-        >
+        {/* Rameno je pevný bod (31.5, 28) – celá paže se kolem něj otáčí
+            (viz .dwarf-arm-right v index.css). Krumpáč je nakreslený tak,
+            že jeho topor vychází přímo z ruky (31.5, 43), takže se
+            s paží pohybuje jako jeden pevný celek, ne odděleně. */}
+        <g className="dwarf-arm-right" style={{ animationDelay: delay }}>
           <rect x="28" y="28" width="7" height="15" rx="3" fill={shirt} />
           {active && (
-            <g className="dwarf-pickaxe">
-              <rect x="33" y="14" width="2.5" height="18" rx="1" fill="#8a5a2b" />
-              <polygon points="27,12 41,12 34,6" fill="#a8a29e" />
+            <g className="dwarf-pickaxe" transform="rotate(-25 31.5 43)">
+              <rect x="30.2" y="19" width="2.6" height="24" rx="1" fill="#8a5a2b" />
+              <polygon points="24,19 39,19 31.5,12" fill="#a8a29e" />
               <polygon
                 className="dwarf-spark"
-                points="41,7 43.5,10.5 41,14 38.5,10.5"
+                points="39,15 41.5,18.5 39,22 36.5,18.5"
                 fill="#fde68a"
                 style={{ animationDelay: delay }}
               />

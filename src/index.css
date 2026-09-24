@@ -84,21 +84,24 @@ body {
 
 @keyframes dwarf-pick-swing {
   0% {
-    transform: rotate(-10deg);
+    transform: rotate(-20deg);
   }
   40% {
-    transform: rotate(60deg);
+    transform: rotate(50deg);
   }
   60% {
-    transform: rotate(60deg);
+    transform: rotate(50deg);
   }
   100% {
-    transform: rotate(-10deg);
+    transform: rotate(-20deg);
   }
 }
 .creature--active .dwarf-arm-right {
-  transform-box: fill-box;
-  transform-origin: 60% 10%;
+  /* view-box = otáčí se kolem bodu v souřadnicích SVG kresby (stejná čísla
+     jako u ostatních tvarů), ne kolem procenta z obálky ruka+krumpáč –
+     díky tomu se paže otáčí správně v ramenním kloubu, ne "od boku pryč". */
+  transform-box: view-box;
+  transform-origin: 31.5px 28px;
   animation: dwarf-pick-swing 0.7s ease-in-out infinite;
 }
 
