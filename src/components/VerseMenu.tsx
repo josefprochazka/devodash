@@ -4,6 +4,9 @@ import type { Verse } from "../types";
 /** Zástupný id pro budoucí verš, který ještě nemá reálná data. */
 export const COMING_SOON_ID = "coming-soon";
 
+/** Samostatná sekce mimo ztišení – jiná appka/hra napojená přes stejné menu. */
+export const MATH_EXPLORE_ID = "math-explore";
+
 interface Props {
   selectedId: string;
   onSelect: (id: string) => void;
@@ -67,6 +70,20 @@ export function VerseMenu({ selectedId, onSelect }: Props) {
           }`}
         >
           + další verš
+        </button>
+      </div>
+
+      <div className="mt-6 pt-4 border-t border-emerald-700/50">
+        <button
+          type="button"
+          onClick={() => onSelect(MATH_EXPLORE_ID)}
+          className={`w-full text-left px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+            selectedId === MATH_EXPLORE_ID
+              ? "bg-amber-400 text-emerald-950 font-semibold"
+              : "bg-indigo-800/60 text-indigo-100 hover:bg-indigo-800"
+          }`}
+        >
+          🔢 Matematické objevování
         </button>
       </div>
     </nav>
