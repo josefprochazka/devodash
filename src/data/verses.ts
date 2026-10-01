@@ -27,4 +27,15 @@ export const verses: Verse[] = [
       "Verš vysvětluje podstatu evangelia. Ukazuje, že k Bohu se nedostaneme vlastními zásluhami ani dobrými skutky, ale jedině skrze Ježíšovu oběť na kříži, která překlenuje propast hříchu.",
     game: "most",
   },
+  {
+    id: "matous-7-24",
+    book: "Matouš",
+    chapter: 7,
+    verse: 24,
+    reference: "Matouš 7:24",
+    text: "Každý, kdo slyší tato má slova a plní je, bude podoben rozvážnému muži, který postavil svůj dům na skále.",
+    parentNote:
+      "Ježíšovo podobenství o dvou stavitelích (Mt 7:24–27). Oba slyší stejná slova, rozdíl je v tom, jestli podle nich jednají. Bouřka přijde na oba domy – víra neslibuje život bez těžkostí, ale pevný základ, který v nich vydrží. Dům na písku vypadal hezky a stavěl se snadno, jenže bez základu. Hra nechá dítě vybrat si místo stavby a pak přijde bouřka; po hře se můžete bavit o tom, co v našem životě znamená „stavět na skále“.",
+    game: "stavitel",
+  },
 ];

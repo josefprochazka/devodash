@@ -1,3 +1,4 @@
+import { bookOrder } from "../data/bibleBooks";
 import { verses } from "../data/verses";
 import type { Verse } from "../types";
 
@@ -13,8 +14,15 @@ interface Props {
 }
 
 function groupByBookAndChapter(list: Verse[]) {
+  // Řadit podle pořadí v Bibli, ne podle pořadí přidání do verses.ts.
+  const sorted = [...list].sort(
+    (a, b) =>
+      bookOrder(a.book) - bookOrder(b.book) ||
+      a.chapter - b.chapter ||
+      a.verse - b.verse,
+  );
   const books = new Map<string, Map<number, Verse[]>>();
-  for (const v of list) {
+  for (const v of sorted) {
     if (!books.has(v.book)) books.set(v.book, new Map());
     const chapters = books.get(v.book)!;
     if (!chapters.has(v.chapter)) chapters.set(v.chapter, []);

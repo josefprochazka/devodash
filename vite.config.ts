@@ -15,6 +15,10 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg"],
+      workbox: {
+        // Phaser chunk má ~1,5 MB; limit zvednutý, aby šel do offline cache
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+      },
       manifest: {
         name: "DevoDash – Ztišení",
         short_name: "DevoDash",
