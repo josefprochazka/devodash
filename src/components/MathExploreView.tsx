@@ -1,17 +1,18 @@
-import { useMemo, useState } from "react";
-import { Creature, CREATURE_OPTIONS } from "./math/creatures";
-import type { CreatureType } from "./math/creatures";
+import { lazy, Suspense, useState } from "react";
+import { CREATURE_OPTIONS, type CreatureType } from "../games/math/options";
 import { StateIcon } from "./math/StateIcon";
-import { NumberAxis } from "./math/NumberAxis";
+
+// Jeskyně s osou běží na Phaseru – načte se líně, až když se sekce otevře.
+const MathCave = lazy(() => import("../games/math/MathCave"));
 
 type Mode = "idle" | "active";
 
 /**
  * Hra na počítání 0–10 pro prvňáčky: postavičky v jeskyni + svislá osa.
  * Samostatná sekce mimo ztišení (viz VerseMenu – "🔢 Matematické objevování").
+ * Tady jsou jen volby nad hrou, samotná jeskyně je v games/math/MathScene.
  */
 export function MathExploreView() {
-  const [value, setValue] = useState(5);
   const [mode, setMode] = useState<Mode>("idle");
   const [selectedTypes, setSelectedTypes] = useState<CreatureType[]>(["dwarf"]);
 
@@ -25,19 +26,6 @@ export function MathExploreView() {
     });
   }
 
-  // Pro daný počet a vybranou sadu typů náhodně přiřadí typ každé postavičce.
-  // Přepočítá se jen když se změní počet nebo výběr typů, ne při každém
-  // překreslení (jinak by se trpaslíci/jablíčka/zvířata míchaly i jen kvůli
-  // přepnutí stojí/v pohybu).
-  const typesKey = [...selectedTypes].sort().join(",");
-  const assignments = useMemo(() => {
-    return Array.from(
-      { length: value },
-      () => selectedTypes[Math.floor(Math.random() * selectedTypes.length)],
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, typesKey]);
-
   return (
     <main className="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full">
       <header className="mb-4">
@@ -49,7 +37,7 @@ export function MathExploreView() {
         </h2>
         <p className="text-sm text-stone-600">
           Pomáhá dětem trénovat počítání od 0 do 10 a vidět, kolik dané číslo
-          doopravdy znamená.
+          doopravdy znamená. Po puštění osy appka číslo řekne nahlas.
         </p>
       </header>
 
@@ -75,61 +63,29 @@ export function MathExploreView() {
       </div>
 
       <div className="flex gap-2 mb-4">
-        <button
-          type="button"
-          onClick={() => setMode("idle")}
-          aria-pressed={mode === "idle"}
-          className={`flex-1 flex flex-col items-center gap-1 py-2 rounded-xl border-2 transition-colors cursor-pointer ${
-            mode === "idle"
-              ? "bg-indigo-100 border-indigo-500"
-              : "bg-stone-50 border-stone-200 hover:bg-stone-100"
-          }`}
-        >
-          <StateIcon active={false} />
-          <span className="text-xs font-medium text-stone-600">Stojí</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => setMode("active")}
-          aria-pressed={mode === "active"}
-          className={`flex-1 flex flex-col items-center gap-1 py-2 rounded-xl border-2 transition-colors cursor-pointer ${
-            mode === "active"
-              ? "bg-indigo-100 border-indigo-500"
-              : "bg-stone-50 border-stone-200 hover:bg-stone-100"
-          }`}
-        >
-          <StateIcon active />
-          <span className="text-xs font-medium text-stone-600">
-            V pohybu
-          </span>
-        </button>
+        {(["idle", "active"] as const).map((m) => (
+          <button
+            key={m}
+            type="button"
+            onClick={() => setMode(m)}
+            aria-pressed={mode === m}
+            className={`flex-1 flex flex-col items-center gap-1 py-2 rounded-xl border-2 transition-colors cursor-pointer ${
+              mode === m
+                ? "bg-indigo-100 border-indigo-500"
+                : "bg-stone-50 border-stone-200 hover:bg-stone-100"
+            }`}
+          >
+            <StateIcon active={m === "active"} />
+            <span className="text-xs font-medium text-stone-600">
+              {m === "idle" ? "Stojí" : "V pohybu"}
+            </span>
+          </button>
+        ))}
       </div>
 
-      <div className="flex gap-4 items-stretch">
-        <div className="relative flex-1 min-w-0 rounded-t-[100px] rounded-b-2xl bg-gradient-to-b from-stone-600 via-stone-700 to-stone-900 border-4 border-stone-900 p-4 min-h-[320px] md:min-h-[360px] flex items-end justify-center overflow-hidden">
-          <div className="absolute inset-x-8 top-3 h-14 rounded-t-full bg-black/30 blur-[2px]" />
-
-          {value === 0 ? (
-            <p className="text-5xl md:text-6xl font-black tracking-widest text-stone-300 pb-6">
-              NIC
-            </p>
-          ) : (
-            <div className="relative flex flex-wrap items-end justify-center gap-1.5 pb-2">
-              {assignments.map((type, i) => (
-                <Creature
-                  key={i}
-                  type={type}
-                  active={mode === "active"}
-                  variant={i}
-                  size={48}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        <NumberAxis value={value} onChange={setValue} />
-      </div>
+      <Suspense fallback={<div className="aspect-[5/3] rounded-xl bg-stone-200 animate-pulse" />}>
+        <MathCave types={selectedTypes} active={mode === "active"} />
+      </Suspense>
     </main>
   );
 }

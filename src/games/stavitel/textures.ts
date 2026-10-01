@@ -1,4 +1,5 @@
 import * as Phaser from "phaser";
+import { points } from "../phaser/draw";
 
 export const BRICK_W = 128;
 export const BRICK_H = 60;
@@ -119,11 +120,4 @@ export function makeTextures(scene: Phaser.Scene) {
   g.generateTexture("wave", 128, 40);
 
   g.destroy();
-}
-
-/** Plochý seznam souřadnic (x1, y1, x2, y2, …) -> body pro fillPoints/strokePoints. */
-export function points(...xy: number[]): Phaser.Math.Vector2[] {
-  const result: Phaser.Math.Vector2[] = [];
-  for (let i = 0; i < xy.length; i += 2) result.push(new Phaser.Math.Vector2(xy[i], xy[i + 1]));
-  return result;
 }

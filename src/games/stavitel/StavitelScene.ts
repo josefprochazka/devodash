@@ -1,12 +1,12 @@
 import * as Phaser from "phaser";
 import { Builder } from "./Builder";
-import { sfx } from "./sfx";
+import { sfx } from "../phaser/sfx";
+import { OUTCOME_EVENT } from "../phaser/usePhaserGame";
 import { SAND_H, makeTextures } from "./textures";
 
 /** Logická velikost scény – Phaser ji pak přizpůsobí šířce obrazovky. */
 export const W = 1200;
 export const H = 720;
-export const OUTCOME_EVENT = "stavitel-outcome";
 
 export type Plot = "rock" | "sand";
 
