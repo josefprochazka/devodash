@@ -17,6 +17,18 @@ export const verses: Verse[] = [
     game: "orani",
   },
   {
+    id: "kazatel-3-1-8",
+    book: "Kazatel",
+    chapter: 3,
+    verse: 1,
+    verseEnd: 8,
+    reference: "Kazatel 3:1–8",
+    text: "Všechno má svou chvíli, každý záměr pod nebem má svůj čas. Je čas rodit a čas umírat, čas sázet a čas vytrhávat, co bylo zasazeno; čas zabíjet a čas uzdravovat, čas bořit a čas stavět; čas plakat a čas se smát, čas naříkat a čas poskakovat; čas házet kameny a čas kameny shromažďovat, čas objímat a čas vzdálit se od objímání; čas hledat a čas ztrácet, čas uchovávat a čas odvrhovat; čas trhat a čas šít, čas být zticha a čas mluvit; čas milovat a čas nenávidět, čas boje a čas pokoje.",
+    parentNote:
+      "Kazatel nám připomíná, že Bůh drží celý náš život i čas ve svých rukou. Život přináší různá období – čas radosti i smutku, čas práce i odpočinku. Dětství je pro děti vzácným „časem sadby“, kdy do svých srdcí zasévají dobré návyky, poslušnost a lásku k BOHU. Moudrost spočívá v tom rozpoznat správný čas pro správné věci a s důvěrou odevzdat svůj čas BOHU.",
+    game: "hodiny",
+  },
+  {
     id: "1-petruv-3-18",
     book: "1. Petrův",
     chapter: 3,

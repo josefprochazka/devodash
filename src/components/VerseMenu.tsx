@@ -58,6 +58,7 @@ export function VerseMenu({ selectedId, onSelect }: Props) {
                       }`}
                     >
                       Verš {v.verse}
+                      {v.verseEnd ? `–${v.verseEnd}` : ""}
                     </button>
                   </li>
                 ))}
