@@ -12,7 +12,7 @@ type Mode = "idle" | "active";
  * Samostatná sekce mimo ztišení (viz VerseMenu – "🔢 Matematické objevování").
  * Tady jsou jen volby nad hrou, samotná jeskyně je v games/math/MathScene.
  */
-export function MathExploreView() {
+export function MathExploreView({ wide = false }: { wide?: boolean }) {
   const [mode, setMode] = useState<Mode>("idle");
   const [selectedTypes, setSelectedTypes] = useState<CreatureType[]>(["dwarf"]);
 
@@ -27,7 +27,7 @@ export function MathExploreView() {
   }
 
   return (
-    <main className="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full">
+    <main className={`flex-1 p-4 md:p-8 mx-auto w-full ${wide ? "max-w-5xl pt-16 md:pt-16" : "max-w-3xl"}`}>
       <header className="mb-4">
         <p className="text-sm uppercase tracking-widest text-indigo-700 font-semibold mb-1">
           Matematické objevování

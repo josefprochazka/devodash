@@ -147,12 +147,47 @@ export const sfx = {
   say(text: string) {
     const synth = window.speechSynthesis;
     if (!synth) return;
-    synth.cancel();
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = "cs-CZ";
     const voice = synth.getVoices().find((v) => v.lang.toLowerCase().startsWith("cs"));
     if (voice) utter.voice = voice;
     utter.rate = 0.9;
-    synth.speak(utter);
+    lastUtterance = utter;
+    utter.onend = () => {
+      if (lastUtterance === utter) lastUtterance = null;
+    };
+    if (synth.speaking || synth.pending) {
+      // Safari zahodí speak() zavolané hned po cancel() – chvilku počkat
+      synth.cancel();
+      setTimeout(() => synth.speak(utter), 80);
+    } else {
+      synth.speak(utter);
+    }
   },
 };
+
+/**
+ * Safari na iPadu/iPhonu pustí řeč jen tehdy, když první speak() přijde
+ * přímo z dotyku prstem. Hry ale mluví až po animaci (např. když ručička
+ * „cvakne“ na místo), tedy mimo dotyk – a to Safari tiše ignoruje. Proto při
+ * prvním dotyku kdekoli na stránce řekneme tiché „nic“ a tím řeč odemkneme;
+ * pak už funguje i mimo dotyk.
+ */
+let speechUnlocked = false;
+/** Drží odkaz na právě čtenou větu – Safari ji jinak umí uklidit z paměti uprostřed čtení. */
+let lastUtterance: SpeechSynthesisUtterance | null = null;
+
+function unlockSpeech() {
+  if (speechUnlocked || !window.speechSynthesis) return;
+  speechUnlocked = true;
+  const silent = new SpeechSynthesisUtterance(" ");
+  silent.volume = 0;
+  window.speechSynthesis.speak(silent);
+  window.speechSynthesis.getVoices(); // načte seznam hlasů dopředu
+  for (const type of ["touchend", "click"]) document.removeEventListener(type, unlockSpeech, true);
+}
+
+if (typeof document !== "undefined") {
+  // touchend/click – právě tyhle události Safari bere jako „uživatel to chtěl“
+  for (const type of ["touchend", "click"]) document.addEventListener(type, unlockSpeech, true);
+}

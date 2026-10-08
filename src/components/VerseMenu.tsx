@@ -11,6 +11,8 @@ export const MATH_EXPLORE_ID = "math-explore";
 interface Props {
   selectedId: string;
   onSelect: (id: string) => void;
+  /** Schová menu (na iPadu na šířku překáží hře). */
+  onHide: () => void;
 }
 
 function groupByBookAndChapter(list: Verse[]) {
@@ -31,12 +33,22 @@ function groupByBookAndChapter(list: Verse[]) {
   return books;
 }
 
-export function VerseMenu({ selectedId, onSelect }: Props) {
+export function VerseMenu({ selectedId, onSelect, onHide }: Props) {
   const books = groupByBookAndChapter(verses);
 
   return (
     <nav className="w-full md:w-64 shrink-0 bg-emerald-900 text-emerald-50 p-4 md:min-h-screen">
-      <h1 className="text-xl font-bold mb-4 tracking-wide">📖 Ztišení</h1>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-bold tracking-wide">📖 Ztišení</h1>
+        <button
+          type="button"
+          onClick={onHide}
+          aria-label="Skrýt menu"
+          className="w-11 h-11 rounded-full bg-emerald-800 hover:bg-emerald-700 text-xl cursor-pointer"
+        >
+          ◀
+        </button>
+      </div>
       {[...books.entries()].map(([book, chapters]) => (
         <div key={book} className="mb-3">
           <div className="font-semibold text-emerald-200 mb-1">{book}</div>

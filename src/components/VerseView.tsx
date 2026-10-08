@@ -1,11 +1,11 @@
 import type { Verse } from "../types";
 import { gameRegistry } from "../games/registry";
 
-export function VerseView({ verse }: { verse: Verse }) {
+export function VerseView({ verse, wide = false }: { verse: Verse; wide?: boolean }) {
   const Game = gameRegistry[verse.game];
 
   return (
-    <main className="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full">
+    <main className={`flex-1 p-4 md:p-8 mx-auto w-full ${wide ? "max-w-5xl pt-16 md:pt-16" : "max-w-3xl"}`}>
       <header>
         <p className="text-sm uppercase tracking-widest text-emerald-700 font-semibold mb-1">
           {verse.reference}
