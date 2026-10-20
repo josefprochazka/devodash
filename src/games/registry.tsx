@@ -12,4 +12,5 @@ export const gameRegistry: Record<GameKey, ComponentType> = {
   most: lazyGame(() => import("./MostGame")),
   stavitel: lazyGame(() => import("./StavitelGame")),
   hodiny: lazyGame(() => import("./HodinyGame")),
+  triska: lazyGame(() => import("./TriskaGame")),
 };

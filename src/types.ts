@@ -1,4 +1,4 @@
-export type GameKey = "orani" | "most" | "stavitel" | "hodiny";
+export type GameKey = "orani" | "most" | "stavitel" | "hodiny" | "triska";
 
 export interface Verse {
   id: string;

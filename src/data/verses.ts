@@ -40,6 +40,18 @@ export const verses: Verse[] = [
     game: "most",
   },
   {
+    id: "matous-7-1-5",
+    book: "Matouš",
+    chapter: 7,
+    verse: 1,
+    verseEnd: 5,
+    reference: "Matouš 7:1–5",
+    text: "„Nesuďte, abyste nebyli souzeni. Neboť jakým soudem soudíte, takovým budete souzeni, a jakou měrou měříte, takovou vám bude naměřeno. Proč tedy hledíš na třísku v oku svého bratra, ale trámu ve svém oku si nevšímáš? Anebo jak můžeš říkat svému bratru: ‚Dovol, ať vyjmu třísku z tvého oka‘, a hle, ve tvém oku je trám? Pokrytče, nejprve vyjmi trám ze svého oka, a pak jasně uvidíš, jak vyjmout třísku z oka svého bratra.",
+    parentNote:
+      "Ježíš tu schválně přehání: člověk s celým trámem v oku se snaží vyndat kamarádovi drobnou třísku. Myšlenka je jednoduchá – každý z nás má své nedokonalosti, hříchy a problémy, a když druhé poučujeme a ukazujeme na jejich chyby, snadno ty své přehlížíme. Ježíš ale neříká, že pomáhat druhým je špatně: až vyjmeme trám ze svého oka, „jasně uvidíme“, jak bratrovi opravdu pomoct – s pokorou a laskavostí. Po hře se můžete s dětmi pobavit: Kdy jsem naposledy viděl(a) chybu u sourozence nebo kamaráda? Je něco, co bych měl(a) nejdřív změnit já?",
+    game: "triska",
+  },
+  {
     id: "matous-7-24",
     book: "Matouš",
     chapter: 7,

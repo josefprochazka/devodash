@@ -143,6 +143,21 @@ export const sfx = {
   poof() {
     noise(0.2, "highpass", 2000, 0.15);
   },
+  /** Kreslené „bum“ do hlavy. */
+  bonk() {
+    tone(700, 0.2, "square", 0.12, 0, 180);
+    noise(0.12, "lowpass", 900, 0.3);
+  },
+  /** Těžký kus dřeva dopadne na zem. */
+  thud() {
+    noise(0.35, "lowpass", 250, 0.7);
+    tone(90, 0.3, "sine", 0.3, 0, 50);
+  },
+  /** Drobné „cvak“ pinzetou. */
+  pluck() {
+    tone(1400, 0.08, "triangle", 0.2, 0, 2200);
+    tone(1800, 0.12, "sine", 0.12, 0.06);
+  },
   /** Přečte text nahlas česky (pokud to zařízení umí). */
   say(text: string) {
     const synth = window.speechSynthesis;
